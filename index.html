@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función Lineal y Función Afín - Huguini79</title>
+    <style>
+        input {
+        width: 50px;
+    }
+      table {
+        border-collapse: collapse;
+        table-layout: auto;
+        width: auto;
+      }
+
+      td,
+      th {
+        border-right: 2px solid black;
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+        padding: 8px;
+      }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <header>
+        <h1>FunctLA - Huguini79</h1>
+    </header>
+    <label>Selecciona el tipo de función</label>
+    <button onclick="Lineal()">Función Lineal</button>
+    <button onclick="Afin()">Función Afín</button>
+    <button onclick="Grafica()">MOSTRAR GRÁFICA</button>
+    <button onclick="Pdf()">GUARDAR EN PDF</button>
+    <div id="contenido"></div>
+    <br><br><br><br>
+    <div id="contenido2"></div>
+    <br>
+    <p>Tabla de valores</p>
+    <table id="tabla_de_valores">
+        <tr>
+            <td>x</td>
+            <td>y</td>
+        </tr>
+    </table>
+    <div style="width: 800px"><canvas id="grafica"></canvas></div>
+    <script src="main.js"></script>
+</body>
+</html>
