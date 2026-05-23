@@ -76,6 +76,15 @@ function Grafica() {
 
     if (mayor_y == 0) {
         mayor_y = 5;
+        menor_y = -5;
+    }
+
+    if (menor_y <= 0) {
+        menor_y -= mayor_y;
+    }
+
+    if (menor_x <= 0) {
+        menor_x -= mayor_x;
     }
 
     miGrafica = new Chart(ctx, {
