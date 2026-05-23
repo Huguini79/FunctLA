@@ -94,13 +94,25 @@ function Grafica() {
             scales: {
                 x: {
                     type: "linear",
-                    min: mayor_x,
-                    max: menor_x,
+                    min: menor_x,
+                    max: mayor_x,
+                    ticks: {
+                        stepSize: 1
+                    },
+                    grid: {
+                        color: "black"
+                    }
                 },
                 y: {
                     type: "linear",
-                    min: mayor_y,
-                    max: menor_y,
+                    min: menor_y,
+                    max: mayor_y,
+                    ticks: {
+                        stepSize: 1
+                    },
+                    grid: {
+                        color: "black"
+                    }
                 }
             }
         }
