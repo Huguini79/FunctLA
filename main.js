@@ -11,68 +11,72 @@ let n;
 
 let miGrafica = null;
 
-/*
 function EncontrarMayorX() {
-    let x_mayor = data[0].x;
+    let mayor_x = data[0].x;
 
     data.forEach((element) => {
-        if (element.x > x_mayor) {
-            x_mayor = element.x;
+        if (element.x > mayor_x) {
+            mayor_x = element.x;
         }
-
     });
 
-    return x_mayor;
+    return mayor_x;
 
 }
 
 function EncontrarMayorY() {
-    let y_mayor = data[0].y;
+    let mayor_y = data[0].y;
 
     data.forEach((element) => {
-        if (element.y > y_mayor) {
-            y_mayor = element.y;
+        if (element.y > mayor_y) {
+            mayor_y = element.y;
         }
     });
 
-    return y_mayor;
+    return mayor_y;
 
 }
 
 function EncontrarMenorX() {
-    let x_menor = data[0].x;
+    let menor_x = data[0].x;
 
     data.forEach((element) => {
-        if (element.x < x_menor) {
-            x_menor = element.x;
+        if (element.x < menor_x) {
+            menor_x = element.x;
         }
     });
 
-    return x_menor;
+    return menor_x;
 
 }
 
 function EncontrarMenorY() {
-    let y_menor = data[0].y;
+    let menor_y = data[0].y;
 
     data.forEach((element) => {
-        if (element.y < y_menor) {
-            y_menor = element.y;
+        if (element.y < menor_y) {
+            menor_y = element.y;
         }
     });
 
-    return y_menor;
+    return menor_y;
 
 }
-    */
 
 function Grafica() {
     if (miGrafica) {
         miGrafica.destroy();
     }
 
-    // let mayor_x = EncontrarMayorX();
-    // let mayor_y = EncontrarMayorY();
+    let mayor_x = EncontrarMayorX();
+    let mayor_y = EncontrarMayorY();
+
+    let menor_x = EncontrarMenorX();
+    let menor_y = EncontrarMenorY();
+
+    if (mayor_y == 0) {
+        mayor_y = 5;
+    }
 
     miGrafica = new Chart(ctx, {
         type: "scatter",
@@ -81,7 +85,7 @@ function Grafica() {
                 label: 'Gráfica',
                 data: data,
                 showLine: true,
-                borderWidth: 1,
+                borderWidth: 2,
                 borderColor: "green",
                 tension: 0
             }]
@@ -90,19 +94,13 @@ function Grafica() {
             scales: {
                 x: {
                     type: "linear",
-                    //min: 0 + 5,
-                    //max: mayor_x,
-                    grid: {
-                        color: "black"
-                    }
+                    min: mayor_x,
+                    max: menor_x,
                 },
                 y: {
                     type: "linear",
-                    //min: 0 + 5,
-                    //max: mayor_y,
-                    grid: {
-                        color: "black"
-                    }
+                    min: mayor_y,
+                    max: menor_y,
                 }
             }
         }
@@ -132,7 +130,7 @@ function AnadirALaTablaDeValoresLineal() {
     tabla_de_valores.innerHTML += `
         <tr>
             <td>${x}</td>
-            <td>${m} · ${x} = ${m * x}</td>
+            <td>${m} · ${x} = ${m * x} -> (${x}, ${m * x})</td>
         </tr>
     `;
 
@@ -143,7 +141,7 @@ function AnadirALaTablaDeValoresLineal() {
 
     console.log(data);
 
-    Lineal();
+    ConseguirXLineal();
 
 }
 
@@ -153,7 +151,7 @@ let input_x = parseInt(document.getElementById('input_valor_de_entrada').value);
     tabla_de_valores.innerHTML += `
         <tr>
             <td>${x}</td>
-            <td>${m} · ${x} + ${n} = ${m * x + n}</td>
+            <td>${m} · ${x} + ${n} = ${m * x + n} -> (${x}, ${m * x + n})</td>
         </tr>
     `;
 
@@ -164,12 +162,10 @@ let input_x = parseInt(document.getElementById('input_valor_de_entrada').value);
 
     console.log(data);
 
-    Afin();
+    ConseguirXAfin();
 }
 
-function SeleccionarPendiente() {
-    let input_pendiente = parseInt(document.getElementById('input_pendiente').value);
-    m = input_pendiente;
+function ConseguirXLineal() {
     div_contenido.innerHTML = `
         <h2>Función seleccionada: Función Lineal</h2>
         <h2>Ecuación tipo: y = mx</h2>
@@ -179,11 +175,7 @@ function SeleccionarPendiente() {
     `;
 }
 
-function SeleccionarPendienteYOrdenada() {
-    let input_pendiente = parseInt(document.getElementById('input_pendiente').value);
-    let input_ordenada_en_el_origen = parseInt(document.getElementById('input_ordenada_en_el_origen').value);
-    m = input_pendiente;
-    n = input_ordenada_en_el_origen;
+function ConseguirXAfin() {
     div_contenido.innerHTML = `
         <h2>Función seleccionada: Función Afín</h2>
         <h2>Ecuación tipo: y = mx + n</h2>
@@ -191,6 +183,20 @@ function SeleccionarPendienteYOrdenada() {
         <br><br>
         <button onclick="AnadirALaTablaDeValoresAfin()">Añadir a la tabla de valores</button>
     `;
+}
+
+function SeleccionarPendiente() {
+    let input_pendiente = parseInt(document.getElementById('input_pendiente').value);
+    m = input_pendiente;
+    ConseguirXLineal();
+}
+
+function SeleccionarPendienteYOrdenada() {
+    let input_pendiente = parseInt(document.getElementById('input_pendiente').value);
+    let input_ordenada_en_el_origen = parseInt(document.getElementById('input_ordenada_en_el_origen').value);
+    m = input_pendiente;
+    n = input_ordenada_en_el_origen;
+    ConseguirXAfin();
 }
 
 
